@@ -2,7 +2,7 @@ Groovz::Application.routes.draw do
   devise_for :users
   resources :statuses
 
-  root to: 'pages#home'
+  root to: 'statuses#index'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
