@@ -1,0 +1,77 @@
+
+
+
+<div class="container-fluid profile">
+	<div class="top-section">
+		<div class="profile_pic img-rounded">
+			<%= link_to(image_tag("profile_pic.jpg" )) %>
+		</div>
+		
+		<div class="profile_header">
+			<div class="name">
+				<h2><%= @user.full_name %></h2>
+				<p><%= @user.role %></p>
+				<%= render 'follow_form'  %>
+			</div>
+			<div class="profile_nav">
+				<ul class="nav nav-pills">
+					<li><%= link_to "Shows", new_path %></li>
+					<li><%= link_to "Music", music_path %></li>
+					<li><%= link_to "Videos", videos_path %></li>
+					<li><%= link_to "Pictures", pictures_path %></li>
+					<li><%= link_to "About", about_path %></li>
+					<li><%= link_to "Followers", followers_path %></li>
+				</ul>
+			</div>
+		</div>
+	
+	
+	</div>
+	<div class="profile_info col-md-3">
+		<% if user_signed_in? %>
+			<%= link_to "Post a New Status", new_status_path, class: "btn btn-success" %>
+		<% end %>
+			<%= render 'stats' %>
+		
+		<div class="photos">
+
+		</div>
+
+	</div>
+
+
+
+
+
+	<div class="col-md-6">
+		<div class="post">
+			<ul class="nav nav-tabs">
+	  			<li><%= link_to "Status", new_status_path %></li>
+	  			<li><%= link_to "Music", music_path %></li>
+	  			<li><%= link_to "Pictures", pictures_path %></li>
+			</ul>
+				<div class="post_area">
+					<%= simple_form_for(@user, html: {class: "form-horizontal"}) do |f| %>
+
+					<% end %>
+				</div>
+				<div class="post_button">
+					<button class="btn btn-primary" type="submit">Post</button>
+				</div>
+
+		</div>
+		<div class="feed">
+			<% if @statuses %>
+				<% @statuses.each do |status| %>
+					<div class="well">
+						<%= status.content %>
+						<hr />
+						<%= link_to time_ago_in_words(status.created_at), status_path(status) %> ago
+					</div>
+				<% end %>
+			<% end %>
+		</div>
+	</div>
+	
+
+</div>

@@ -1,0 +1,11 @@
+  	
+<div class="container">
+	<div class="sup">
+	  	<% form_for :bid, @show.bids.new do |f|%>
+	 		 <%= f.label_for :amount %>
+	  		<%= f.text_field :amount%>
+
+			<!-- Don't need to supply @auction.id, because form_for does it for you. -->
+			<%= submit_tag "Add Bid" %>
+	</div>
+</div>

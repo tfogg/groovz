@@ -8,6 +8,8 @@ gem 'sqlite3'
 
 gem 'devise'
 
+gem 'cancan'
+
 gem 'simple_form'
 
 gem 'protected_attributes'
@@ -31,6 +33,8 @@ gem 'turbolinks'
 
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 1.2'
+
+gem 'paperclip'
 
 
 group :doc do

@@ -1,20 +1,69 @@
 Groovz::Application.routes.draw do
-  get "profiles/show"
+  
+
+
+
   devise_for :users
 
   devise_scope :user do
     get 'register', to: 'devise/registrations#new', as: :register
     get 'login', to: 'devise/sessions#new', as: :login
     get 'logout', to: 'devise/sessions#destroy', as: :logout
+
   end
 
+  
+  
+ 
+  get 'global', to: 'profiles#index', as: :global
+  get 'music', to: 'profiles#music', as: :music
+  get 'pictures', to: 'profiles#pictures', as: :pictures
+  get 'videos', to: 'profiles#videos', as: :videos
+  get 'followers', to: 'profiles#followers', as: :followers
+  get 'about', to: 'profiles#about', as: :about
+  get 'setup/:id', to: 'profiles#setup', as: :setup
+  root to: 'statuses#index'
+
+  get 'home', to: 'pages#home', as: :home
+
+  get '/:id', to: 'profiles#show', as: :profile
 
   resources :statuses
   get 'feed', to: 'statuses#index', as: :feed
 
-  root to: 'statuses#index'
+  get '/:id', to: 'shows#show', as: :gig
 
-  get '/:id', to: 'profiles#show'
+  get 'bid', to: 'shows#bid', as: :bid
+
+  get 'new', to: 'shows#new', as: :new
+
+  
+
+  
+
+  resources :users do
+    member do
+      get :following, :followers
+    end
+  end
+
+  get 'artists', to: 'pages#artists', as: :artists
+
+  resources :relationships, :only => [:create, :destroy]
+
+
+ 
+
+
+
+
+  
+
+
+
+
+  
+
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

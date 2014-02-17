@@ -1,21 +1,34 @@
-<div class="page-header">
-  <h1>Global Feed</h1>
+<div class="global_feed">
+  <div class="form-group search">
+    <h1>Tell the world <br> what you're thinking</h1>
+    <%= link_to "Post a New Status", new_status_path, class: "btn btn-success" %>
+
+  </div>
+
+  <div class="display">
+    <% @statuses.each do |status| %>
+      <div class="user">
+        <div class="profile_pic">
+            <%= link_to (image_tag(status.user.gravatar_url)), profile_path(status.user) %>
+        </div>
+        <div class ="post_content">
+          <strong><%= status.user.full_name %></strong>
+          <p><%= status.content %></p>
+          <div class="meta"> 
+            <%= link_to time_ago_in_words(status.created_at) + " ago", status %>
+            <span class="admin">
+              <%= link_to 'Edit', edit_status_path(status) %>
+              <%= link_to 'Delete', status, method: :delete, data: { confirm: 'Are you sure?' } %>
+            </span>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+
 </div>
 
-<%= link_to "Post a New Status", new_status_path, class: "btn btn-success" %>
 
-<% @statuses.each do |status| %>
-  <div class="status">
-    <%= status.user.full_name %>
-    <p><%= status.content %></p>
-    <div class="meta">
-      <%= link_to time_ago_in_words(status.created_at) + " ago", status %>
-      <span class="admin">
-        <%= link_to 'Edit', edit_status_path(status) %>
-        <%= link_to 'Delete', status, method: :delete, data: { confirm: 'Are you sure?' } %>
-      </span>
-    </div>
-<% end %>
 
 
 
