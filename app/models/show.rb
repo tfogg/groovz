@@ -1,7 +1,7 @@
 class Show < ActiveRecord::Base
-	attr_accessible :content, :user_id, :first_name, :last_name, :full_name, :role
+	attr_accessible :content, :user_id, :maxprice, :start_time, :bids
 	
-	belongs_to :creator, :class_name => "User" 
+	belongs_to :user, :class_name => "User" 
   	has_many :bids 
 
   # Given the nature of your relationships, you're going to want to add this      
@@ -11,5 +11,7 @@ class Show < ActiveRecord::Base
   	validates_presence_of :user_id
   	validates_presence_of :content 
   	validates_presence_of :maxprice
-  	validates_presence_of :start_time attr_reader :bids
+  	validates_presence_of :start_time 
+
+    attr_reader :bids
 end

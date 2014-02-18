@@ -1,13 +1,14 @@
 <div class="col-md-4 form-horizontal well">
   
   <div class="sup">
-  	<%= form_for :show, @show.new do |f| %>
+  	<%= simple_form_for(@show, url: {action: "create"}, html: {class:"form-horizontal"}) do |f| %>
       <%= f.input :user_id, collection: User.all, label_method: :full_name %>
       <%= f.input :content %>
-      <%= f.input :date %>
-      <%= f.input :location %>
-  </div>
-  <div class="form-action">
-     <%= f.button :submit %>
+      <%= f.input :start_time %>
+      <%= f.input :maxprice %>
+      <div class="form-action">
+      <%= f.button :submit %>
+      </div>
+    <% end %>
   </div>
 </div>

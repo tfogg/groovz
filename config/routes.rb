@@ -12,24 +12,27 @@ Groovz::Application.routes.draw do
 
   end
 
+  resources :statuses, controller: 'statuses'
   
-  
- 
-  get 'global', to: 'profiles#index', as: :global
-  get 'music', to: 'profiles#music', as: :music
-  get 'pictures', to: 'profiles#pictures', as: :pictures
-  get 'videos', to: 'profiles#videos', as: :videos
-  get 'followers', to: 'profiles#followers', as: :followers
-  get 'about', to: 'profiles#about', as: :about
-  get 'setup/:id', to: 'profiles#setup', as: :setup
-  root to: 'statuses#index'
+
+  get 'artists', to: 'pages#artists', as: :artists
+  get 'global', to: 'users#index', as: :global
+  get 'music', to: 'users#music', as: :music
+  get 'pictures', to: 'users#pictures', as: :pictures
+  get 'videos', to: 'users#videos', as: :videos
+  get 'followers', to: 'users#show_follow', as: :followers
+  get 'about', to: 'users#about', as: :about
+  get 'setup/:id', to: 'users#setup', as: :setup
+  root to: 'pages#home'
 
   get 'home', to: 'pages#home', as: :home
 
-  get '/:id', to: 'profiles#show', as: :profile
+  get '/:id', to: 'users#show', as: :profile
 
-  resources :statuses
-  get 'feed', to: 'statuses#index', as: :feed
+
+
+
+  resources :shows, controller: 'shows'
 
   get '/:id', to: 'shows#show', as: :gig
 
@@ -47,7 +50,7 @@ Groovz::Application.routes.draw do
     end
   end
 
-  get 'artists', to: 'pages#artists', as: :artists
+ 
 
   resources :relationships, :only => [:create, :destroy]
 

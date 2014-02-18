@@ -1,0 +1,59 @@
+
+<div class="container-fluid profile">
+  <div class="top-section">
+    <div class="profile_pic img-rounded">
+      <%= link_to(image_tag("profile_pic.jpg" )) %>
+    </div>
+    
+    <div class="profile_header">
+      <div class="name">
+        <h2><%= @user.full_name %></h2>
+        <p><%= @user.role %></p> 
+        <%= render 'stats'  %>
+        <%= render 'follow_form'  %>
+
+
+      </div>
+      <div class="profile_nav">
+        <ul class="nav nav-pills">
+          <li><%= link_to "Shows", new_path %></li>
+          <li><%= link_to "Music", music_path %></li>
+          <li><%= link_to "Videos", videos_path %></li>
+          <li><%= link_to "Pictures", pictures_path %></li>
+          <li><%= link_to "About", about_path %></li>
+          <li><%= link_to "Followers", followers_path %></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="profile_info col-md-3">
+    <%= render 'stats' %>
+    <% if @users.any? %>
+      <div class="user_avatars">
+        <%- @users.each do |user| %>
+            <%= link_to (image_tag(user.gravatar_url)), profile_path(user) %>
+        <% end %>
+      </div>
+    <% end %>
+
+
+  </div>
+
+
+  <% provide(:title, @title) %>
+  <div class="col-md-9 feed">
+      <h3><%= @title %></h3>
+        <% if @users.any? %>
+          <div class="well">
+            <%- @users.each do |user| %>
+                <%= link_to (image_tag(user.gravatar_url)), profile_path(user) %>
+                <h3><%= user.full_name %></h3>
+                <p><%= user.role %></p>
+            <% end %>
+          </div>
+        <% end %>
+      </div>
+  
+  </div>
+</div>

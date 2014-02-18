@@ -20,8 +20,8 @@ class User < ActiveRecord::Base
 
 
     has_many :statuses
-    has_many :shows, :foreign_key => "owner_id" 
-    has_many :bids, :foreign_key => "owner_id"
+    has_many :shows, :foreign_key => "creator_id" 
+    has_many :bids, :foreign_key => "bidder_id"
     has_many :bid_on_shows, :through => :bids, :source => :show
     has_many :following, :through => :relationships, :source => :followed
     has_many :relationships, :foreign_key => "follower_id",

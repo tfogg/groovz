@@ -1,4 +1,5 @@
 class ShowsController < ApplicationController
+  before_action :set_show, only: [:show, :edit, :update, :destroy]
 
   def index
     @shows = Shows.all
@@ -12,29 +13,20 @@ class ShowsController < ApplicationController
   end
 
   def add_bids 
-  # not bad, but... @bid will only fill in the owner_id/bidder_id. and bid amount.
 
     @bid = current_user.bids.create(params[:bid])
 
-  # create calls save, so this next line is redundant. It still works though. 
-  # because nothing's happening between them to alter the outcome of save.
-
     if @bid.save 
       flash[:notice] = "New Bid Added" 
-
-      # you should be using restful routes, this almost works, but is ugly and deprecated.
-      # it doesn't work becasue @bid.auction_id is never set. In fact you never use 
-      # the auction_id any where, which was in your params_hash as params[:id]
       redirect_to :show => "view_show", :id => @bid.show_id
    end
   end
 
-  # GET /statuses/new
   def new
-    
+    @show = Show.new
   end
 
-  # GET /statuses/1/edit
+
   def edit
   end
 
@@ -86,6 +78,7 @@ class ShowsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def show_params
-      params.require(:show, :date).permit(:user_id, :content)
+      params[:show][:user_id] = current_user.id
+      params.require(:show).permit(:user_id, :content, :starts_at, :maxprice, :bids_attributes => [:amount, :user_id, :show_id])
     end
 end
