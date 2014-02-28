@@ -15,19 +15,36 @@ class BidsController < ApplicationController
    		end
 	end
 
+	def index
+		@bids = Bid.all
+		
+	end
+
+	def show
+		@bid = Bid.find(params[:id])
+		
+
+	end
+
 
 	def new 
-		@show = Show.find(params[:show_id])
-		@bid = @show.bids.build
+		@bid =Bid.new
+		@bid.user_id = current_user.id if current_user
+		@bid.build_show
+
 
 	end
 
 	def create
-	    @item = Item.find(params[:item_id])
-	    @bid = @item.bids.new(bid_params)
+		@bid =Bid.new(bid_params)
+		@bid.user = current_user
+		@show = @bid.show
+
 	    respond_to do |format|
 	      if @bid.save
-	        format.html { redirect_to @item, notice: 'Your item has been updated.'}
+	      	flash[:notice] = "New Bid Added" 
+
+	        format.html { redirect_to @bid, notice: 'Your show has been updated.'}
 	      else
 	        format.html { render action: 'new' }
 	      end
@@ -37,7 +54,7 @@ class BidsController < ApplicationController
 	def set_bid
 		@bid= Bid.find(params[:id])
 	end
-	
+
 	def bid_params 
 		params[:bid][:user_id] = current_user.id
 		params[:bid].permit(:amount, :user_id, :show_id)

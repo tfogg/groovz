@@ -9,11 +9,16 @@
     <% @statuses.each do |status| %>
       <div class="user">
         <div class="profile_pic">
-            <%= link_to (image_tag(status.user.gravatar_url)), profile_path(status.user) %>
+            <%= link_to(image_tag(status.user.avatar.url), profile_path(status.user.profile_name)) %>
         </div>
         <div class ="post_content">
           <strong><%= status.user.full_name %></strong>
           <p><%= status.content %></p>
+          <% if status.post && status.post.attachment? %>
+            <span class= "label label-primary">
+              <%= status_post_link (status) %>
+            </span>
+          <% end %>
           <div class="meta"> 
             <%= link_to time_ago_in_words(status.created_at) + " ago", status %>
             <span class="admin">

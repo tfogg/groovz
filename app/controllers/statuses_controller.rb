@@ -1,32 +1,45 @@
 class StatusesController < ApplicationController
   before_action :set_status, only: [:show, :edit, :update, :destroy]
 
+
+
   # GET /statuses
   # GET /statuses.json
   def index
     @statuses = Status.all
+    @posts = Post.all
+    @user = User.find_by_profile_name(params[:id])
   end
 
   # GET /statuses/1
   # GET /statuses/1.json
   def show
 
+
   end
 
   # GET /statuses/new
   def new
     @status = Status.new
+    @status.user_id = current_user.id if current_user
+    @status.build_post
 
   end
 
   # GET /statuses/1/edit
   def edit
   end
+  
 
   # POST /statuses
   # POST /statuses.json
   def create
     @status = Status.new(status_params)
+
+    
+    @status.user_id = current_user.id if current_user
+    
+    
 
     respond_to do |format|
       if @status.save
@@ -42,8 +55,13 @@ class StatusesController < ApplicationController
   # PATCH/PUT /statuses/1
   # PATCH/PUT /statuses/1.json
   def update
+    @status = current_user.statuses.find(params[:id])
+    @post = @status.post
+
     respond_to do |format|
-      if @status.update(status_params)
+      if @status.update_attributes(status_params) &&
+        @post && @post.update_attributes(params[:status][:post_attributes])
+
         format.html { redirect_to @status, notice: 'Status was successfully updated.' }
         format.json { head :no_content }
       else
@@ -71,6 +89,6 @@ class StatusesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def status_params
-      params.require(:status).permit(:user_id, :content)
+      params.require(:status).permit(:user_id, :show_id, :content, :post_attributes => [:attachment])
     end
 end

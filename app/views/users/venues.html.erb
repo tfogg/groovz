@@ -1,0 +1,31 @@
+
+<div class="global_feed">
+	<div class="form-group search">
+		<h1>Search venues</h1>
+		<input type="text" class="form-control" placeholder="Search">
+
+	</div>
+	<div class="display">
+		
+		  	<%- @users.each do |user| %>
+		  		<% if user.is_venue? %>
+			  		<div class="user">
+			  			<div class="user_top">
+			  				<%= link_to(image_tag(user.avatar.url), profile_path(user.profile_name)) %>
+			  			</div>
+			  			<div class="user_bottom">
+			      			<h3><%= link_to user.full_name %></h3>
+			      			<p><strong><%= user.role %></strong> with <%= user.shows.count %> <%= link_to "shows", shows_path %></p>
+			      		</div>
+
+
+			      	</div>
+			   <% end %>
+
+		    <% end %>
+	  
+	</div>
+
+</div>
+
+

@@ -1,7 +1,7 @@
 <div class="container-fluid profile">
 	<div class="top-section">
 		<div class="profile_pic img-rounded">
-			<%= link_to(image_tag("profile_pic.jpg" )) %>
+			<%= link_to(image_tag(@user.avatar.url), profile_path(@user.profile_name)) %>
 		</div>
 		
 		<div class="profile_header">
@@ -12,7 +12,7 @@
 			</div>
 			<div class="profile_nav">
 				<ul class="nav nav-pills">
-					<li><%= link_to "Shows", new_path %></li>
+					<li><%= link_to "Shows", new_show_path %></li>
 					<li><%= link_to "Music", music_path %></li>
 					<li><%= link_to "Videos", videos_path %></li>
 					<li><%= link_to "Pictures", pictures_path %></li>

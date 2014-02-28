@@ -1,5 +1,5 @@
 <div class="col-md-4 form-horizontal well">
-  <%= simple_form_for(@status, html: {class: "form-horizontal"}) do |f| %>
+  <%= simple_form_for(@status, html: {class: "form-horizontal"}, multipart: true ) do |f| %>
     <% if @status.errors.any? %>
       <div id="error_explanation">
         <h2><%= pluralize(@status.errors.count, "error") %> prohibited this status from being saved:</h2>
@@ -12,8 +12,26 @@
       </div>
     <% end %>
     <div class="sup">
-      <%= f.input :user_id, collection: User.all, label_method: :full_name %>
+      
       <%= f.input :content %>
+
+      <%= f.fields_for :post do |post_fields| %>
+        
+        <% if post_fields.object.attachment? %>
+        <div class="control-group">
+          <label class="control-label">Picture</label>
+          <div class="controls">
+          <%= link_to post_fields.object.attachment_file_name, post_fields.object.attachment.url %>
+          </div>
+        </div>
+        <%= post_fields.input :remove_attachment, as: :boolean, label: "Remove attachment?" %>
+        <% end %>
+
+
+        <%= post_fields.input :attachment, as: :file %>
+      <% end %>
+      
+
     </div>
     <div class="form-action">
      <%= f.button :submit %>

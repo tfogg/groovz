@@ -6,7 +6,7 @@ class User < ActiveRecord::Base
 
 
    attr_accessible :email, :password, :password_confirmation, :remember_me,
-   					:first_name, :last_name, :profile_name, :full_name, :role, :location
+   					:first_name, :last_name, :profile_name, :full_name, :role, :location, :avatar
 
     validates :first_name, presence: true
     validates :last_name, presence: true
@@ -16,12 +16,16 @@ class User < ActiveRecord::Base
                                 with: /[a-zA-Z0-9_-]+/,
                                 message: 'Must be formatted correctly'
                               }
+    
 
 
 
     has_many :statuses
-    has_many :shows, :foreign_key => "creator_id" 
-    has_many :bids, :foreign_key => "bidder_id"
+    has_many :posts
+    has_many :shows
+    has_many :albums
+    has_many :pictures
+    has_many :bids
     has_many :bid_on_shows, :through => :bids, :source => :show
     has_many :following, :through => :relationships, :source => :followed
     has_many :relationships, :foreign_key => "follower_id",
@@ -30,6 +34,15 @@ class User < ActiveRecord::Base
                                    :class_name => "Relationship",
                                    :dependent => :destroy
     has_many :followers, :through => :reverse_relationships, :source => :follower
+
+    has_attached_file :avatar, styles: {large: "800x800>", medium: "300x200>", small: "260x180>", thumbnail: "80x80#"}
+
+    has_one :avatar
+
+    validates_attachment :avatar, presence: true
+
+    validates_attachment_content_type :avatar, :content_type => ['image/jpeg', 'image/jpg', 'image/png']
+     
 
     def following?(followed)
       relationships.find_by_followed_id(followed)
@@ -56,7 +69,7 @@ class User < ActiveRecord::Base
     end
 
     def user_params
-    	params.require(:user).permit(:name, :email, :password, :password_confirmation, :role, :location)
+    	params.require(:user).permit(:name, :email, :password, :password_confirmation, :role, :avatar, :location, :post_attributes => [:attachment])
   	end	
 
     def full_name

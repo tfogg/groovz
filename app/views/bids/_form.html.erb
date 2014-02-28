@@ -1,0 +1,14 @@
+<div class="col-md-4 form-horizontal">
+  	<%= simple_form_for(@bid, url: {action: "create"}, html: {class: "well"}) do |f| %>
+      <fieldset class="sup">
+        <legend>Create a bid</legend>
+        
+        <%= f.input :show_id, collection: Show.all, label_method: :content %>
+        <%= f.input :amount %>
+       
+      </fieldset>
+      <div class="form-action">
+      <%= f.button :submit %>
+      </div>
+    <% end %>
+</div>

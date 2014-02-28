@@ -42,8 +42,41 @@
 .home h1 {
 	font-family: sans-serif;
 	font-size: 50px;
-	color: #333;
+	color: #f8f8f8;
+}
+.message{
+
+}
+.top-box{
+	height: 500px;
+	padding: 150px 30px;
+	background: #333300;
+}
+.middle-box{
+	height: 300px;
+}
+.bottom-box{
+	height:150px;
+}
+.venue-box{
+	background: #f9f9f9;
+	height: 300px;
+	border:1px solid;
+	border-color:#e5e6e9;
+}
+.venue-box h3{
 	text-align: center;
+}
+.venue-box a{
+	color:#fff;
+}
+.venue-btn button{
+	font-size: 24px;
+	width: 150px;
+}
+.venue-btn {
+	margin:30px auto;
+	width: 150px;
 }
 .profile_pic {
 	width:200px;
@@ -89,6 +122,9 @@
 	width:780px;
 	float:left;
 }
+.home {
+	background: #fff;
+}
 .profile_nav{
 	height:40px;
 	width:780px;
@@ -103,6 +139,8 @@
 
 .feed{
 	min-height: 600px;
+	margin-top: 20px;
+	background: #e9eaed;
 
 
 }
@@ -122,17 +160,34 @@
   	min-height: 1px;
   	padding:10px 0;
 }
+.stream{
+	min-height: 1000px;
+	background: #e9eaed;
+}
 .post{
-	background:#f5f5f5;
-	margin-bottom: 20px;
+
+	margin-bottom: 40px;
+	min-height: 600px;
 }
 .post_button{
-	padding-left:416px;
+	float:right;
+
+
+
 	border-top:1px solid #e5e6e9;
+}
+.post_button button{
+		width: 60px;
 }
 .post_area textarea{
 	border:none;
 
+
+}
+.post_area {
+	height: 120px;
+	margin-bottom: 20px;
+	background:#f5f5f5;
 
 }
 .zambonie{
@@ -143,6 +198,25 @@
 	margin:0px 0 0 250px;
 	width:450px;
 	}
+.shows{
+	margin: 20px 20px;
+	padding:10px 10px;
+	width:200px;
+	max-width: 200px;
+	float:left;
+	display:block;
+	overflow: hidden;
+	min-height: 200px;
+  	background-color: #f5f5f5;
+  	border: 1px solid #e3e3e3;
+  	border-radius: 4px;
+  	-webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.05);
+          box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.05);
+
+}
+.shows a{
+	color:#fff;
+}
 .user{
 	margin:10px 3px 20px 25px;
 	width:200px;
@@ -150,7 +224,8 @@
 	float:left;
 	display:block;
 	overflow: hidden;
-	min-height: 200px;
+	
+	height: 420px;
   	background-color: #f5f5f5;
   	border: 1px solid #e3e3e3;
   	border-radius: 4px;
@@ -163,6 +238,7 @@
 }
 .user_top img{
 	height:200px;
+	width:200px;
 
 }
 .user_bottom{
@@ -181,11 +257,13 @@
 }
 .display{
 	width:1000px;
-	min-height: 600px;
 	height: auto;
-	display: block;
+
+}
+.label a{
+	color:#fff;
 }
 
-/html/body/div[2]/div/div[2]/text()
+
 
 

@@ -5,11 +5,23 @@ class ApplicationController < ActionController::Base
 
   before_filter :configure_permitted_parameters, if: :devise_controller?
 
+  before_filter :update_permitted_parameters, if: :devise_controller?
+
+
+
 	protected
 
 	def configure_permitted_parameters 
-		devise_parameter_sanitizer.for(:sign_up) { |u| u.permit(:email, :password, :password_confirmation, :remember_me, :first_name, :last_name, :profile_name, :user_id, :role, :location) } 
+		devise_parameter_sanitizer.for(:sign_up) { |u| u.permit(:email, :password, :password_confirmation, :remember_me, :first_name, :last_name, :profile_name, :user_id, :location, :avatar, :role) } 
 	end
+
+   def update_permitted_parameters
+    devise_parameter_sanitizer.for(:account_update) {|u| u.permit(:email, :password, :password_confirmation, :current_password, :avatar ) } 
+  end
+
+  
+
+  
 
 	def after_sign_up_path_for(resource_or_scope)
     	setup_path(current_user)

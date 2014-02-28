@@ -1,7 +1,12 @@
 <p id="notice"><%= notice %></p>
 
+<div class="profile_pic">
+	<%= link_to(image_tag(@status.user.avatar.url), profile_path(@status.user.profile_name)) %>
+
+</div>
+
 <p>
-  <b>Name:</b>
+  <strong>Name:</strong>
    <%= @status.user.full_name %> 
 </p>
 
@@ -9,6 +14,10 @@
   <strong>Content:</strong>
   <%= @status.content %>
 </p>
+
+<% if @status.post && @status.post.attachment? %>
+	<%= status_post_link @status %>
+<% end %>
 
 <%= link_to 'Edit', edit_status_path(@status) %> |
 <%= link_to 'Back', statuses_path %>

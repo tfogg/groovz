@@ -1,5 +1,5 @@
 class Show < ActiveRecord::Base
-	attr_accessible :content, :user_id, :maxprice, :start_time, :bids
+	attr_accessible :content, :user_id, :maxprice, :start_time, :bid_id
 	
 	belongs_to :user, :class_name => "User" 
   	has_many :bids 
@@ -14,4 +14,6 @@ class Show < ActiveRecord::Base
   	validates_presence_of :start_time 
 
     attr_reader :bids
+
+    has_many :statuses
 end

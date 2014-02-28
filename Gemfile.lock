@@ -92,6 +92,7 @@ GEM
     rake (10.1.1)
     rdoc (4.1.1)
       json (~> 1.4)
+    rmagick (2.13.2)
     sass (3.2.13)
     sass-rails (4.0.1)
       railties (>= 4.0.0, < 5.0)
@@ -142,6 +143,7 @@ DEPENDENCIES
   paperclip
   protected_attributes
   rails (= 4.0.1)
+  rmagick
   sass-rails (~> 4.0.0)
   sdoc
   simple_form

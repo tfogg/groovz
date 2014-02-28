@@ -9,6 +9,5 @@ class CreateShows < ActiveRecord::Migration
       t.timestamps
     end
     add_index :shows, :user_id
-    end
   end
 end

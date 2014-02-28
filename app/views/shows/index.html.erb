@@ -1,0 +1,25 @@
+<div class="container-fluid">
+	<div class="filters">
+
+	</div>
+		<% @shows.each do |show| %>
+			<div class="shows user">
+				<div class= "profile_pic">
+					<%= link_to(image_tag(show.user.avatar.url), profile_path(show.user.profile_name)) %>
+				</div>
+				<h2><%= show.user.full_name %></h2>
+
+				<p><%= show.content %></p>
+				<strong>$<%= show.maxprice %>    </strong>
+				
+
+				<button class="btn btn-primary"><%= link_to "Bid", new_bid_path %></button>
+				
+
+			</div>
+
+
+
+		<% end %>
+
+</div>

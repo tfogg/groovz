@@ -1,5 +1,5 @@
 <h2>Sign up</h2>
-<%= form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
+<%= simple_form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
   <%= devise_error_messages! %>
 
   <div><%= f.label :first_name %><br>
@@ -12,6 +12,19 @@
     <%= f.text_field :profile_name %></div>
 
   <div><%= f.collection_select :role, User::ROLES, :to_s, :humanize %></div>
+
+  <fieldset>
+    <legend>Profile Picture</legend>
+    <%= f.input :avatar, as: :file %>
+    <% if f.object.avatar? %>
+    <div class="control-group">
+      <label class="control-label">Current avatar</label>
+      <div class="controls">
+          <%= image_tag f.object.avatar.url %>
+      </div>
+    </div>
+    <% end %>
+  </fieldset>
 
   <div><%= f.label :email %><br />
   <%= f.email_field :email, :autofocus => true %></div>

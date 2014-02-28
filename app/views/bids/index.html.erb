@@ -1,0 +1,15 @@
+<div class="container-fluid">
+	<div class="filters">
+
+	</div>
+	<% @bids.each do |bid| %>
+		<div class="shows">
+			<h2><%= bid.user.full_name %></h2>
+			<p><%= bid.user.role %></p>
+			<strong>bidding $<%= bid.amount %> on</strong>
+			<h3>Show <%= bid.show_id %></h3>
+
+		</div>
+
+	<% end %>
+</div>
