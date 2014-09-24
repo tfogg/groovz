@@ -52,8 +52,9 @@ end
   get 'videos', to: 'users#videos', as: :videos
   get 'followers', to: 'users#show_follow', as: :followers
   get 'about', to: 'users#about', as: :about
-  get 'setup/:id', to: 'users#setup', as: :setup
-  get 'feed', to: 'users#feed', as: :feed
+  get '/:id/setup', to: 'users#setup', as: :setup
+  get '/:id/feed', to: 'users#feed', as: :feed
+  get '/:id/shows', to: 'users#shows', as: :usershows
   root to: 'pages#home'
 
   get 'home', to: 'pages#home', as: :home

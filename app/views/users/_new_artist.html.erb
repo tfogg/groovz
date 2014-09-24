@@ -1,2 +1,8 @@
-<h1>Artist</h1>
+<div class= "col-md-4 well profile_pic container">
+	<h1>Artist</h1>
+
+<%= link_to image_tag(@user.avatar.url), profile_path(@user.profile_name) %> <br> <br>
+
 <%= current_user.first_name %>
+
+</div>

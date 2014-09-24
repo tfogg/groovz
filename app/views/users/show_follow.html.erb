@@ -30,7 +30,7 @@
   <div class="profile_info col-md-3">
     <%= render 'stats' %>
     <% if @users.any? %>
-      <div class="user_avatars">
+      <div class="user_avatars thumb">
         <%- @users.each do |user| %>
             <%= link_to(image_tag(user.avatar.url), profile_path(user.profile_name)) %>
         <% end %>
@@ -45,7 +45,7 @@
   <div class="col-md-9 feed">
       <h3><%= @title %></h3>
         <% if @users.any? %>
-          <div class="well">
+          <div class="well thumb">
             <%- @users.each do |user| %>
                 <%= link_to(image_tag(user.avatar.url), profile_path(user.profile_name)) %>
                 <h3><%= user.full_name %></h3>

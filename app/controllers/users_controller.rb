@@ -12,12 +12,33 @@ class UsersController < ApplicationController
       	end
 	end
 	def feed
-		@users = User.all
+		@user = User.find_by_profile_name(params[:id]) 
+		@users = @user.following(params[:following_id])
 		@statuses = Status.all
 		@posts = Post.all
 		@shows = Show.all
+		render 'feed'
+	end
+
+	def shows 
+		@user = User.find_by_profile_name(params[:id])
+		@shows = @user.shows.all
+	end
+
+	def music
+		@user = User.find_by_profile_name(params[:id])
+		@music = @user.music.all
 	end
 	
+	def videos
+		@user = User.find_by_profile_name(params[:id])
+		@videos = @user.videos.all
+	end
+
+	def pictures
+		@user = User.find_by_profile_name(params[:id])
+		@pictures = @user.pictures.all
+	end
 	
 
 	def following

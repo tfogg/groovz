@@ -67,15 +67,14 @@
 .venue-box h3{
 	text-align: center;
 }
-.venue-box a{
-	color:#fff;
-}
+
 .venue-btn button{
 	font-size: 24px;
 	width: 150px;
+	margin: 20px auto;
 }
 .venue-btn {
-	margin:30px auto;
+	margin: 0px auto;
 	width: 150px;
 }
 .profile_pic {
@@ -263,7 +262,10 @@
 .label a{
 	color:#fff;
 }
-
+.thumb img{
+	width:80px;
+	height:80px;
+}
 
 
 

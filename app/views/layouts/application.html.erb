@@ -3,6 +3,7 @@
 <head>
   <title>Groovz</title>
   <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
+  <%= stylesheet_link_tag    "bootstrap", media: "all", "data-turbolinks-track" => true %>
   <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
   <%= csrf_meta_tags %>
 </head>
@@ -17,13 +18,9 @@
       <!-- Collect the nav links, forms, and other content for toggling -->
       <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
         <ul class="nav navbar navbar-nav navbar-left">
-          <li><%= link_to "All Users", global_path %></li>
-          <li><%= link_to "Statuses", statuses_path %></li>
-          <li><%= link_to "Global Feed", feed_path %></li>
           <li><%= link_to "Venues", venues_path %></li>
           <li><%= link_to "Artists", artists_path %></li>
           <li><%= link_to "Shows", shows_path %></li>
-          <li><%= link_to "Bid", new_bid_path %></li>
         </ul>
         <ul class="nav navbar-nav navbar-right">
           <% if user_signed_in? %>

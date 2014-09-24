@@ -40,6 +40,7 @@ gem 'paperclip'
 
 gem 'rmagick'
 
+gem 'event-calendar', :require => 'event_calendar'
 
 
 
